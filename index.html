@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Search</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .upload-box {
+      border: 2px dashed #007aff;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      cursor: pointer;
+      background: #f0f7ff;
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    #preview {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 15px;
+      display: none;
+    }
+
+    button {
+      background-color: #007aff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .results {
+      margin-top: 25px;
+      text-align: left;
+      display: none;
+    }
+
+    .profile-link {
+      display: block;
+      padding: 10px;
+      margin: 8px 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #007aff;
+      font-weight: bold;
+    }
+
+    .profile-link:hover {
+      background: #e9ecef;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Find Profiles</h2>
+    <p style="color: #666; font-size: 14px;">Upload a photo to search for online accounts</p>
+
+    <label class="upload-box" for="photoInput">
+      <span>Tap here to select photo</span>
+      <input type="file" id="photoInput" accept="image/*" onchange="previewImage(event)">
+    </label>
+
+    <img id="preview" alt="User Image Preview">
+
+    <button onclick="searchProfiles()" style="margin-top: 15px;">Search Profiles</button>
+
+    <div class="results" id="resultsBlock">
+      <h3>Matching Profiles:</h3>
+      <a href="https://instagram.com" target="_blank" class="profile-link">📸 Instagram Profile</a>
+      <a href="https://linkedin.com" target="_blank" class="profile-link">💼 LinkedIn Profile</a>
+      <a href="https://x.com" target="_blank" class="profile-link">🌐 X (Twitter) Profile</a>
+    </div>
+  </div>
+
+  <script>
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'inline-block';
+      }
+    }
+
+    function searchProfiles() {
+      const fileInput = document.getElementById('photoInput');
+      if (!fileInput.files.length) {
+        alert("Please select a photo first!");
+        return;
+      }
+      
+      // Simulate processing time
+      const resultsBlock = document.getElementById('resultsBlock');
+      resultsBlock.style.display = 'none';
+      
+      setTimeout(() => {
+        resultsBlock.style.display = 'block';
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
